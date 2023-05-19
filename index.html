@@ -1,0 +1,33 @@
+html
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Enter a domain name:</h2>
+
+<input type="text" id="domainName" placeholder="example.com">
+
+<button onclick="resolveDomain()">Resolve</button>
+
+<p id="ipAddress"></p>
+
+<script>
+function resolveDomain() {
+  var domainName = document.getElementById("domainName").value;
+  var ipAddress = document.getElementById("ipAddress");
+  ipAddress.innerHTML = "Resolving...";
+  fetch(`https://dns.google/resolve?name=${domainName}&type=A`)
+    .then(response => response.json())
+    .then(data => {
+      ipAddress.innerHTML = data.Answer[0].data;
+      navigator.clipboard.writeText(data.Answer[0].data);
+    })
+    .catch(error => {
+      ipAddress.innerHTML = "Error resolving domain name.";
+      console.error(error);
+    });
+}
+</script>
+
+</body>
+</html>
