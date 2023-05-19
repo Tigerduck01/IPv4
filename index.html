@@ -12,7 +12,7 @@
 
 <script>
 function resolveDomain() {
-  var domainName = document.getElementById("0hxz2fkqld9z0zhv.myfritz.net").value;
+  var domainName = 0hxz2fkqld9z0zhv.myfritz.net;
   var ipAddress = document.getElementById("ipAddress");
   ipAddress.innerHTML = "Resolving...";
   fetch(`https://dns.google/resolve?name=${domainName}&type=A`)
