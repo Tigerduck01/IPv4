@@ -2,7 +2,11 @@
 <html>
 <body onload="resolveDomain()">
 
-<p id="ipAddress"></p>
+
+<div>
+    <p id="ipAddress" class="ip-address"></p>
+    <button onclick="copyToClipboard()">Copy to Clipboard</button>
+</div>
 
 <script>
 function resolveDomain() {
@@ -20,7 +24,27 @@ function resolveDomain() {
       console.error(error);
     });
 }
+
+  function copyToClipboard() {
+    const ipAddress = document.getElementById('ipAddress').innerText;
+    const el = document.createElement('textarea');
+    el.value = ipAddress;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    alert('IP-Adresse wurde in die Zwischenablage kopiert: ' + ipAddress);
+}
 </script>
 
+<style>
+    .ip-address {
+        font-size: 24px; /* Größere Schriftgröße */
+        display: inline-block;
+        margin-right: 10px;
+    }
+</style>
+  
+  
 </body>
 </html>
